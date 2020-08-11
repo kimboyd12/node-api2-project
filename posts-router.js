@@ -78,7 +78,7 @@ router.post("/api/posts", (req, res) => {
         })
 })
 
-// POST req to add comment to specific post - NOT DONE ERROR IN INSOMNIA
+// POST req to add comment to specific post
 router.post("/api/posts/:id/comments", (req, res) => {
     if (!req.body.text) {
         return res.status(400).json({
@@ -86,7 +86,7 @@ router.post("/api/posts/:id/comments", (req, res) => {
         })
     }
     
-    posts.insertComment(req.params.id, req.body)
+    posts.insertComment({post_id: req.params.id, ...req.body})
             .then((comment) => {
                 res.status(201).json(comment)
             })
