@@ -1,8 +1,9 @@
+require('dotenv').config()
 const express = require("express")
 const postsRouter = require("./posts-router")
 
 const server = express()
-const port = 4001
+const port = process.env.PORT || 4001
 
 server.use(express.json())
 server.use(postsRouter)
